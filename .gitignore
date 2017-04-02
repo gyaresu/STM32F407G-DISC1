@@ -1,3 +1,6 @@
+# Eclipse ignores
+.metadata/
+
 # Apple crap
 .DS_Store
 
