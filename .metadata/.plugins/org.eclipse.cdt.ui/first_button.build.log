@@ -1,0 +1,23 @@
+15:54:35 **** Incremental Build of configuration Debug for project first_button ****
+make all 
+Building file: ../Src/main.c
+Invoking: MCU GCC Compiler
+/Users/gyaresu/programming/stm32-discovery/first_button/Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed="__attribute__((__packed__))"' -DUSE_HAL_DRIVER -DSTM32F407xx -I"/Users/gyaresu/programming/stm32-discovery/first_button/Inc" -I"/Users/gyaresu/programming/stm32-discovery/first_button/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/Users/gyaresu/programming/stm32-discovery/first_button/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"/Users/gyaresu/programming/stm32-discovery/first_button/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/Users/gyaresu/programming/stm32-discovery/first_button/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
+Finished building: ../Src/main.c
+ 
+Building target: first_button.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F407VGTx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "first_button.elf" @"objects.list"  
+Finished building target: first_button.elf
+ 
+/Applications/Xcode.app/Contents/Developer/usr/bin/make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "first_button.elf" "first_button.bin"
+arm-none-eabi-size "first_button.elf"
+   text	   data	    bss	    dec	    hex	filename
+   3900	     12	   1572	   5484	   156c	first_button.elf
+ 
+
+15:54:35 Build Finished (took 447ms)
+
