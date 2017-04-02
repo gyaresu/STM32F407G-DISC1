@@ -56,7 +56,10 @@ void Error_Handler(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+}
 /* USER CODE END 0 */
 
 int main(void)
@@ -78,10 +81,6 @@ int main(void)
   MX_GPIO_Init();
 
   /* USER CODE BEGIN 2 */
-  #define HALF_SECOND 500 // in millisecond ticks
-  uint32_t lastRun = 0U;
-  uint32_t nowTime;
-  //uint32_t counter = 0;
 
   /* USER CODE END 2 */
 
@@ -90,28 +89,7 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-	  nowTime = HAL_GetTick();
-	  nowTime = HAL_GetTick();
-	  // Red LED
-	  if ((nowTime - lastRun) >= (HALF_SECOND/3)) {
-		  HAL_GPIO_TogglePin(LD5_GPIO_Port, LD5_Pin);
-	  }
 
-	  // Green LED
-	  if ((nowTime - lastRun) >= (HALF_SECOND/2)) {
-		  HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
-	  }
-
-	  // Orange LED
-	  if ((nowTime - lastRun) >= HALF_SECOND) {
-		  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-	  }
-
-	  // Blue LED
-	  if ((nowTime - lastRun) >= (HALF_SECOND*2)) {
-		  HAL_GPIO_TogglePin(LD6_GPIO_Port, LD6_Pin);
-		  lastRun = nowTime;
-	  }
   /* USER CODE BEGIN 3 */
 
   }
