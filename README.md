@@ -7,3 +7,5 @@ Note that when you're setting up the HAL UART function, `&huart2` refers to the 
 `HAL_UART_Receive(&huart2, (uint8_t *) result, len, HAL_MAX_DELAY);`
 
 i.e. HAL UART 2 (huart2), HAL UART 3 (huart3), etc.
+
+![USART 2 Setup](/images/STM32F4_UART2_setup.png)
