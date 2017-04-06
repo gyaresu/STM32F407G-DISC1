@@ -9,3 +9,4 @@ Note that when you're setting up the HAL UART function, `&huart2` refers to the 
 i.e. HAL UART 2 (huart2), HAL UART 3 (huart3), etc.
 
 ![USART 2 Setup](/images/STM32F4_UART2_setup.png)
+![20x4 LED Panel over i2c](/images/stm32f4_LED_Display.jpg)
