@@ -131,28 +131,49 @@ int main(void)
       while(1);
   }
 
-  LCD_ClearDisplay(&lcd);
-  LCD_SetLocation(&lcd, 0, 0);
-  LCD_WriteString(&lcd, "rand:");
-  LCD_SetLocation(&lcd, 0, 1);
-  LCD_WriteString(&lcd, "e:");
-  LCD_SetLocation(&lcd, 20, 0);
-  LCD_WriteString(&lcd, "third:");
-  LCD_SetLocation(&lcd, 20, 1);
-  LCD_WriteString(&lcd, "fourth:");
+  void fizzbuzz() {
+    LCD_ClearDisplay(&lcd);
+    LCD_SetLocation(&lcd, 0, 0);
+    LCD_WriteString(&lcd, "Count:");
+    LCD_SetLocation(&lcd, 0, 1);
+    LCD_WriteString(&lcd, "Fizz:");
+    LCD_SetLocation(&lcd, 20, 0);
+    LCD_WriteString(&lcd, "Buzz:");
+    LCD_SetLocation(&lcd, 20, 1);
+    LCD_WriteString(&lcd, "FizzBuzz:");
+  }
+
+  fizzbuzz();
+
+  uint32_t count = 0;
+  uint8_t tab1 = 10;
+  uint8_t tab2 = 30;
+  uint8_t places = 0;
+  uint8_t first_line = 0;
+  uint8_t second_line = 1;
 
   while (1) {
-    LCD_SetLocation(&lcd, 7, 0);
-    uint32_t r = rand();
-    LCD_WriteFloat(&lcd, r, 2);
-    LCD_SetLocation(&lcd, 7, 1);
-    LCD_WriteFloat(&lcd,2.71, 2);
-    LCD_SetLocation(&lcd, 27, 0);
-    LCD_WriteFloat(&lcd,4.42, 2);
-    LCD_SetLocation(&lcd, 27, 1);
-    LCD_WriteFloat(&lcd, 9.234, 2);
-    HAL_Delay(1000);
-  }
+    //uint32_t r = rand();
+    count++;
+    LCD_SetLocation(&lcd, tab1, first_line);
+    LCD_WriteNumber(&lcd, count, 10);
+    if (count % 3 == 0 && count % 5 == 0 ) { // FizzBuzz
+      LCD_SetLocation(&lcd, tab2, second_line);
+      LCD_WriteFloat(&lcd, count, places);
+      //LCD_ClearDisplay(&lcd);
+      HAL_Delay(1000);
+      //fizzbuzz();
+    } else {
+      if (count % 3 == 0) { // Fizz
+        LCD_SetLocation(&lcd, tab1, second_line);
+        LCD_WriteFloat(&lcd, count, places);
+      } else if (count % 5 == 0) { // Buzz
+        LCD_SetLocation(&lcd, tab2, first_line);
+        LCD_WriteFloat(&lcd,count, places);
+      }
+    }
+    HAL_Delay(200);
+  } // end while loop
 }
 
 /** System Clock Configuration
