@@ -161,7 +161,7 @@ int main(void)
       LCD_SetLocation(&lcd, tab2, second_line);
       LCD_WriteFloat(&lcd, count, places);
       //LCD_ClearDisplay(&lcd);
-      HAL_Delay(1000);
+      //HAL_Delay(1000);
       //fizzbuzz();
     } else {
       if (count % 3 == 0) { // Fizz
