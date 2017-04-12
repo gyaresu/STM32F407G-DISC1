@@ -9,4 +9,13 @@ Note that when you're setting up the HAL UART function, `&huart2` refers to the 
 i.e. HAL UART 2 (huart2), HAL UART 3 (huart3), etc.
 
 ![USART 2 Setup](/images/STM32F4_UART2_setup.png)
+
+## 20x4 HD44780 LCD Panel with 8-bit PCF8574 I/O expander
+
+*HD44780 LCD panel driver*
+https://github.com/petoknm/PCF8574
+
+*8-bit PCF8574 I/O expander driver*
+https://github.com/petoknm/HD44780
+
 ![20x4 LED Panel over i2c](/images/stm32f4_LED_Display.jpg)
