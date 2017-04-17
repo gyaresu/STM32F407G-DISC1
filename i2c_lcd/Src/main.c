@@ -143,6 +143,17 @@ int main(void)
     LCD_WriteString(&lcd, "FizzBuzz:");
   }
 
+  void message() {
+    LCD_ClearDisplay(&lcd);
+    LCD_SetLocation(&lcd, 0, 0);
+    LCD_WriteString(&lcd, "Hey, look Ben");
+    LCD_SetLocation(&lcd, 0, 1);
+    LCD_WriteString(&lcd, "I made you a nerdy");
+    LCD_SetLocation(&lcd, 20, 0);
+    LCD_WriteString(&lcd, "greeting on a screen");
+    LCD_SetLocation(&lcd, 20, 1);
+    LCD_WriteString(&lcd, "You're welcome.");
+  }
   fizzbuzz();
 
   uint32_t count = 0;
@@ -154,6 +165,7 @@ int main(void)
 
   while (1) {
     //uint32_t r = rand();
+
     count++;
     LCD_SetLocation(&lcd, tab1, first_line);
     LCD_WriteNumber(&lcd, count, 10);
@@ -172,6 +184,7 @@ int main(void)
         LCD_WriteFloat(&lcd,count, places);
       }
     }
+
     HAL_Delay(200);
   } // end while loop
 }
