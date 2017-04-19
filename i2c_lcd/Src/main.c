@@ -35,6 +35,7 @@
 #include "stm32f4xx_hal.h"
 #include "dma.h"
 #include "i2c.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -116,77 +117,23 @@ int main(void)
   MX_DMA_Init();
   MX_I2C1_Init();
   MX_USART2_UART_Init();
-  HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 1);
+  MX_SPI1_Init();
 
-  lcd.pcf8574.PCF_I2C_ADDRESS = 0x27;
-  lcd.pcf8574.PCF_I2C_TIMEOUT = 1000;
-  lcd.pcf8574.i2c.Instance = I2C1;
-  lcd.pcf8574.i2c.Init.ClockSpeed = 400000;
-  lcd.NUMBER_OF_LINES = NUMBER_OF_LINES_2;
-  lcd.type = TYPE0;
+  /* USER CODE BEGIN 2 */
 
-  if(LCD_Init(&lcd)!=LCD_OK){
-      // error occured
-      while(1);
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+  /* USER CODE END WHILE */
+
+  /* USER CODE BEGIN 3 */
+
   }
+  /* USER CODE END 3 */
 
-  void fizzbuzz() {
-    LCD_ClearDisplay(&lcd);
-    LCD_SetLocation(&lcd, 0, 0);
-    LCD_WriteString(&lcd, "Count:");
-    LCD_SetLocation(&lcd, 0, 1);
-    LCD_WriteString(&lcd, "Fizz:");
-    LCD_SetLocation(&lcd, 20, 0);
-    LCD_WriteString(&lcd, "Buzz:");
-    LCD_SetLocation(&lcd, 20, 1);
-    LCD_WriteString(&lcd, "FizzBuzz:");
-  }
-
-  void message() {
-    LCD_ClearDisplay(&lcd);
-    LCD_SetLocation(&lcd, 0, 0);
-    LCD_WriteString(&lcd, "Hey, look Ben");
-    LCD_SetLocation(&lcd, 0, 1);
-    LCD_WriteString(&lcd, "I made you a nerdy");
-    LCD_SetLocation(&lcd, 20, 0);
-    LCD_WriteString(&lcd, "greeting on a screen");
-    LCD_SetLocation(&lcd, 20, 1);
-    LCD_WriteString(&lcd, "You're welcome.");
-  }
-  fizzbuzz();
-
-  uint32_t count = 0;
-  uint8_t tab1 = 10;
-  uint8_t tab2 = 30;
-  uint8_t places = 0;
-  uint8_t first_line = 0;
-  uint8_t second_line = 1;
-
-  while (1) {
-    //uint32_t r = rand();
-
-    count++;
-    LCD_SetLocation(&lcd, tab1, first_line);
-    LCD_WriteNumber(&lcd, count, 10);
-    if (count % 3 == 0 && count % 5 == 0 ) { // FizzBuzz
-      LCD_SetLocation(&lcd, tab2, second_line);
-      LCD_WriteFloat(&lcd, count, places);
-      //LCD_ClearDisplay(&lcd);
-      //HAL_Delay(1000);
-      //fizzbuzz();
-    } else {
-      if (count % 3 == 0) { // Fizz
-        LCD_SetLocation(&lcd, tab1, second_line);
-        LCD_WriteFloat(&lcd, count, places);
-      } else if (count % 5 == 0) { // Buzz
-        LCD_SetLocation(&lcd, tab2, first_line);
-        LCD_WriteFloat(&lcd,count, places);
-      }
-    }
-
-    HAL_Delay(200);
-  } // end while loop
 }
 
 /** System Clock Configuration
@@ -205,12 +152,11 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 7;
@@ -258,9 +204,10 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler */
   /* User can add his own implementation to report the HAL error return state */
-  while(1)
+  while(1) 
   {
   }
+  /* USER CODE END Error_Handler */ 
 }
 
 #ifdef USE_FULL_ASSERT
